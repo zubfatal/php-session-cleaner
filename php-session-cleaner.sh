@@ -27,7 +27,9 @@ if [ ${debug:-0} -eq 1 ]; then
 fi
 
 for _path in ${session_path} ; do
-        if [ -f "${session_path_file}" ]; then
+        if [ -f "${_path}/.php-session-cleaner" ]; then
+                _time=$( egrep "^[0-9]+$" "${_path}/.php-session-cleaner" | tail -1 )
+        elif [ -f "${session_path_file}" ]; then
                 _match=$( egrep "^${_path}\:" "${session_path_file}" )
                 _time=$( echo "${_match}" | awk -F":" '{ print $NF }' | sed -r 's/^[^0-9]+//g' )
         fi

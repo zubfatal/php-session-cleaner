@@ -13,7 +13,7 @@ session_mask="sess_*"
 time_prefix="+"
 
 # delete command
-del_cmd="-exec rm {} \;"
+del_cmd="-exec rm '{}' \;"
 
 # enable debugging (changes $del_cmd to '-ls')
 debug=0
@@ -34,5 +34,5 @@ for _path in ${session_path} ; do
                 _time=$( echo "${_match}" | awk -F":" '{ print $NF }' | sed -r 's/^[^0-9]+//g' )
         fi
 
-        find ${_path} -ignore_readdir_race -type f -iname '${session_mask}' -mmin ${time_prefix}${_time:-${session_lifetime}} ${del_cmd}
+        eval "find ${_path} -ignore_readdir_race -type f -iname '${session_mask}' -mmin ${time_prefix}${_time:-${session_lifetime}} ${del_cmd}"
 done

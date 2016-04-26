@@ -11,7 +11,9 @@ Each path can have a custom session lifetime value - see [php-session-cleaner.li
 The script will look for a file name `php-session-cleaner.list` in the same directory as the script itself, unless the file is passed as an argument.
 
 ### php-session-cleaner.list syntax
-\<path/to/session files\>:\<max session lifetime in minutes\>
+```
+<path/to/session files>:<max session lifetime in minutes>
+```
 
 A value of `-1` will prevent cleanup. Can be defined or overridden per directory.
 
@@ -22,6 +24,8 @@ To better accommodate an environment where the user has access to the session da
 ```
 */5	*	*	*	*	root	/root/cronjobs/php-session-cleaner.sh >/dev/null 2>&1
 ```
+
+This executes the script every 5 minutes as the root user.
 
 ## License
 This project is licensed under the terms of the [MIT license](./LICENSE.txt).

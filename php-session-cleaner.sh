@@ -13,7 +13,7 @@ session_mask="sess_*"
 time_prefix="+"
 
 # delete command
-del_cmd="-exec rm '{}' \;"
+del_cmd="-print0 | xargs -0 -r rm -f"
 
 # enable debugging (changes $del_cmd to '-ls')
 debug=0

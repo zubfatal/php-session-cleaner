@@ -27,8 +27,8 @@ if [ ${debug:-0} -eq 1 ]; then
 fi
 
 for _path in ${session_path} ; do
-		[[ ! -d ${_path} ]] && continue
-		
+        [[ ! -d ${_path} ]] && continue
+
         if [ -f "${_path}/.php-session-cleaner" ]; then
                 _time=$( egrep "^[0-9]+$" "${_path}/.php-session-cleaner" | tail -1 )
         elif [ -f "${session_path_file}" ]; then

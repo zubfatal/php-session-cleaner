@@ -16,7 +16,7 @@ time_prefix="+"
 del_cmd="-print0 | xargs -0 -r rm -f"
 
 # enable debugging (changes $del_cmd to '-ls')
-debug=0
+debug=0	
 
 ### begin script ###
 script_dir=$( dirname ${0} )
@@ -27,6 +27,8 @@ if [ ${debug:-0} -eq 1 ]; then
 fi
 
 for _path in ${session_path} ; do
+		[[ ! -d ${_path} ]] && continue
+		
         if [ -f "${_path}/.php-session-cleaner" ]; then
                 _time=$( egrep "^[0-9]+$" "${_path}/.php-session-cleaner" | tail -1 )
         elif [ -f "${session_path_file}" ]; then
